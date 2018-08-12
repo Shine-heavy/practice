@@ -1,24 +1,28 @@
-<!DOCTYPE html>
+<!Document html>
+<head> 
+	<meta charset="UTF-8">
+	<title>在线计算器</title>
 <style>
-    *{margin:0;padding:0}
+    *{margin:0;padding:0;outline:none;-webkit-appearance:none;}
     .title{
             width:100%;
             height:60px;
             color:grey;
             text-align:center;
             margin:50px 0;
+			margin-left:;
     }
     .main{
         width:240px;
-        height:250px;
+        height:300px;
         color:grey;
         text-align:center;
-        margin-left:35%;
+        margin-left:40%;
         background-color:rgb(73,85,119);
         border-radius:20px;
         padding:40px 30px;
     }
-   	.other,.num,.op{
+   	.num,.op{
         width:40px;
         height:40px;
         border-radius:50%;
@@ -26,16 +30,7 @@
         border:0;
         margin:5px;
     }
-   .other:active,.num:active,.op:active{
-        box-shadow:0 0;
-    }
-    .other{
-        color:white;
-        background-color:#E1834C;
-        box-shadow:-1px 3px 0 1px #E4683E;
-    }
-
-    .num{
+	.num{
         color:white;
         background-color:grey;
         box-shadow:-1px 3px 0 1px #5E657F;
@@ -44,58 +39,74 @@
         color:#495577;
         background-color:#DDDDDB;
         box-shadow:-1px 3px 0 1px #BDBDBD;
-
     }
-    #result{
+	
+	#result,.other{
         width:100px;
         height:40px;
-        border-radius:50% 0;
         font-size:20px;
         color:white;
-        background-color:#97D0DB;
-			border-radius:20px;
-        box-shadow:5px 5px 0 -1px #3EAAC0 inset;
+		border:0;
+        margin:5px;
+        border-radius:20px;
         border:0;
-        text-align:right;
-        padding-right:10px;
-        
+        padding:0 10px;
+     
+    }
+	.other{
+        text-align:center;
+        background-color:#E1834C;
+        box-shadow:-1px 3px 0 1px #E4683E;
+    }
+	#result{
+		text-align:right;
+		background-color:#97D0DB;
+		box-shadow:5px 5px 0 -1px #3EAAC0 inset;
+	｝
+	.num:active,.op:active;.other:active,{
+        box-shadow:0 0;
     }
             
 </style>
+</head>
 <body>
     <div class="title">
         <h1>HTML CSS JAVASCRIPT计算器</h1>
     </div>
     <div class="main">
       <form >
-          <button type="button" class="other" id="cle" value="C">C</button>
-          <button type="button" class="other" id="del" value="D">D</button>
-          <input type="text" id="result">
+          <button type="button" class="op" value="("></button>
+          <button type="button" class="op" value=")"></button>
+          <input type="text" id="result" readonly="readonly"> 
           <br>
           
-		  <button type="button" class="num" value="1">1</button>
-          <button type="button" class="num" value="2">2</button>
-          <button type="button" class="num" value="3">3</button>
-          <button type="button" class="op">+</button>
+		  <button type="button" class="num" value="1"></button>
+          <button type="button" class="num" value="2"></button>
+          <button type="button" class="num" value="3"></button>
+          <button type="button" class="op" value="+"></button>
           <br>
-          <button type="button" class="num" value="4">4</button>
-          <button type="button" class="num" value="5">5</button>
-          <button type="button" class="num" value="6">6</button>
-          <button type="button" class="op">*</button>
+          <button type="button" class="num" value="4"></button>
+          <button type="button" class="num" value="5"></button>
+          <button type="button" class="num" value="6"></button>
+          <button type="button" class="op" value="*"></button>
           <br>
-          <button type="button" class="num" value="7">7</button>
-          <button type="button" class="num" value="8">8</button>
-          <button type="button" class="num" value="9">9</button>
-          <button type="button" class="op">-</button>
+          <button type="button" class="num" value="7"></button>
+          <button type="button" class="num" value="8"></button>
+          <button type="button" class="num" value="9"></button>
+          <button type="button" class="op" value="-"></button>
           <br>
-          <button type="button" class="num" value="0">0</button>
-          <button type="button" class="op">.</button>
-          <button type="button" class="op">/</button>
-          <button type="button" class="other">=</button>
+          <button type="button" class="num" value="0"></button>
+          <button type="button" class="op" value="."></button>
+          <button type="button" class="op" value="/"></button>
+          <button type="button" class="op" id="cal" value="="></button>
+          <br>
+          <button type="button" class="other" id="cle" value="清除"></button>
+          <button type="button" class="other" id="del" value="退格"></button>
+          
           
       </form>
     </div>
-    <div id="time">
+    <div id="time" style="text-align:center;margin-top:50px">
     </div>
     
 </body>
@@ -103,21 +114,34 @@
 
 
 <script>
-
-var numId=document.getElementsByClassName("num");
-for(i=0;i<numId.length;i++){
-       numId[i].onclick=function(){
-           document.getElementById("result").value+=this.value;	
+var result=document.getElementById("result");
+//写入按钮显示值并绑定click事件
+var btnArray=document.getElementsByTagName("button");
+for(i=0;i<btnArray.length;i++){
+		btnArray[i].innerHTML=btnArray[i].value;
+		btnArray[i].onclick=function(){			
+			result.value+=this.value;	
 								   };
 							};   
+							
+//删除和清除键
 var result=document.getElementById("result");
-function get(a){
-    result.value=a;
-}
 document.getElementById("cle").onclick=function(){
     result.value="";};
-
 document.getElementById("del").onclick=function(){
     result.value=result.value.substring(0,result.value.length-1);
 };
+//计算
+document.getElementById("cal").onclick=function(){
+	result.value=eval(result.value);
+};
+//时间--待优化
+function showtime(){
+document.getElementById("time").innerHTML=Date();
+setTimeout("showtime()",1000);
+}
+window.onload=function(){
+	showtime();
+	};
+
 </script>
