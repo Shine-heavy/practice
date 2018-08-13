@@ -3,7 +3,6 @@
 <head> 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,height=device-height">
-
 	<title>在线计算器</title>
 	<style>
 		*{margin:0;padding:0;outline:none;-webkit-appearance:none;}
@@ -66,7 +65,7 @@
 			background-color:#97D0DB;
 			box-shadow:5px 5px 0 -1px #3EAAC0 inset;
 		}
-		.num:active,.op:active;.other:active,{
+		.num:active,.op:active,.other:active{
 			box-shadow:0 0;
 		}
 				
@@ -77,7 +76,7 @@
         <h1>HTML CSS JAVASCRIPT计算器</h1>
     </div>
     <div id="main">
-      <form >
+		<form>	  
 		  <button type="button" class="op" value="("></button>
           <button type="button" class="op" value=")"></button>
           <input type="text" id="result" readonly="readonly"> 
@@ -104,11 +103,9 @@
           <br>
           <button type="button" class="other" id="cle" value="清除"></button>
           <button type="button" class="other" id="del" value="退格"></button>
-          
-          
-      </form>
+        </form>
     </div>
-    <div id="time" style="text-align:center;margin-top:50px">
+    <div id="time" style="text-align:center;margin-top:50px;font-size:20px">
     </div>
 </body>
 <script>
@@ -118,7 +115,7 @@ var btnArray=document.getElementsByTagName("button");
 for(i=0;i<btnArray.length;i++){
 		btnArray[i].innerHTML=btnArray[i].value;
 		btnArray[i].onclick=function(){			
-			result.value+=this.value;	
+			result.value+=this.value;			
 								   };
 							};   
 							
