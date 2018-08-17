@@ -1,0 +1,32 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<base target="_blank" />
+	<link type="text/css" href="static/all.css" rel="stylesheet">
+</head>
+<body id="index">
+
+<div class="main">
+	<a href="tv.html"><button type="button" class="big important" >剧集</button></a>
+	<a href="https://www.cxy61.com"><button type="button" class="small" style="left:170;top:70">编程</button></a>
+	<a href="http://maoyan.com/"><button type="button" class="small" style="left:170;top:210">电影</button></a>
+	<a href="https://weibo.com/zhuyilong"><button type="button" class="small" style="left:310">爱豆</button></a>
+	<button type="button" id="ctrl" class="small important" style="left:310;top:140">戳我</button>
+	<a href="https://wegame.com/store"><button type="button" class="small" style="left:310;top:280">游戏</button></a>
+	<a href="https://www.ele.me"><button type="button" class="small" style="left:450;top:70">外卖</button></a>
+	<a href="http://www.jjwxc.net/"><button type="button" class="small" style="left:450;top:210">小说</button></a>
+</div>
+<audio id="audio" src="static/bgm.mp3"  loop="loop"></audio>
+</body>
+<script>
+var audio=document.getElementById("audio");
+document.getElementById("ctrl").onclick=function(){
+	if(audio.paused){
+	audio.play();
+	}else{
+	audio.pause();
+	};
+};
+
+</script>
+</html>
