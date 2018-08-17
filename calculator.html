@@ -1,0 +1,146 @@
+<!Document html>
+<html>
+<head> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height">
+	<title>在线计算器</title>
+	<style>
+		*{margin:0;padding:0;outline:none;-webkit-appearance:none;}
+		.title{
+				width:100%;
+				height:60px;
+				color:grey;
+				text-align:center;
+				margin:50px 0;
+				margin-left:;
+		}
+		#main{
+			width:240px;
+			height:300px;
+			color:grey;
+			text-align:center;
+			margin:0 40%;
+			background-color:rgb(73,85,119);
+			border-radius:20px;
+			padding:40px 30px;
+		}
+		.num,.op{
+			width:40px;
+			height:40px;
+			border-radius:50%;
+			font-size:20px;
+			border:0;
+			margin:5px;
+		}
+		.num{
+			color:white;
+			background-color:grey;
+			box-shadow:-1px 3px 0 1px #5E657F;
+		}
+		.op{
+			color:#495577;
+			background-color:#DDDDDB;
+			box-shadow:-1px 3px 0 1px #BDBDBD;
+		}
+		
+		#result,.other{
+			width:100px;
+			height:40px;
+			font-size:20px;
+			color:white;
+			border:0;
+			margin:5px;
+			border-radius:20px;
+			border:0;
+			padding:0 10px;
+		 
+		}
+		.other{
+			text-align:center;
+			background-color:#E1834C;
+			box-shadow:-1px 3px 0 1px #E4683E;
+		}
+		#result{
+			text-align:right;
+			background-color:#97D0DB;
+			box-shadow:5px 5px 0 -1px #3EAAC0 inset;
+		}
+		.num:active,.op:active,.other:active{
+			box-shadow:0 0;
+		}
+				
+	</style>
+</head>
+<body>
+    <div class="title">
+        <h1>HTML CSS JAVASCRIPT计算器</h1>
+    </div>
+    <div id="main">
+		<form>	  
+		  <button type="button" class="op" value="("></button>
+          <button type="button" class="op" value=")"></button>
+          <input type="text" id="result" readonly="readonly"> 
+          <br>
+          <button type="button" class="num" value="1"></button>
+          <button type="button" class="num" value="2"></button>
+          <button type="button" class="num" value="3"></button>
+          <button type="button" class="op" value="+"></button>
+          <br>
+          <button type="button" class="num" value="4"></button>
+          <button type="button" class="num" value="5"></button>
+          <button type="button" class="num" value="6"></button>
+          <button type="button" class="op" value="*"></button>
+          <br>
+          <button type="button" class="num" value="7"></button>
+          <button type="button" class="num" value="8"></button>
+          <button type="button" class="num" value="9"></button>
+          <button type="button" class="op" value="-"></button>
+          <br>
+          <button type="button" class="num" value="0"></button>
+          <button type="button" class="op" value="."></button>
+          <button type="button" class="op" value="/"></button>
+          <button type="button" class="op" id="cal" value="="></button>
+          <br>
+          <button type="button" class="other" id="cle" value="清除"></button>
+          <button type="button" class="other" id="del" value="退格"></button>
+        </form>
+    </div>
+    <div id="time" style="text-align:center;margin-top:50px;font-size:20px">
+    </div>
+</body>
+<script>
+var result=document.getElementById("result");
+//写入按钮显示值并绑定click事件
+var btnArray=document.getElementsByTagName("button");
+for(i=0;i<btnArray.length;i++){
+		btnArray[i].innerHTML=btnArray[i].value;
+		btnArray[i].onclick=function(){			
+			result.value+=this.value;			
+								   };
+							};   
+							
+//删除和清除键
+var result=document.getElementById("result");
+document.getElementById("cle").onclick=function(){
+    result.value="";};
+document.getElementById("del").onclick=function(){
+    result.value=result.value.substring(0,result.value.length-1);
+};
+//计算
+document.getElementById("cal").onclick=function(){
+	result.value=eval(result.value);
+};
+//时间
+function showtime(){
+var today=new Date();
+var M=today.getMonth()+1;
+var T=Date().substring(16,25);
+var W=new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+document.getElementById("time").innerHTML=today.getFullYear()+"年"+M+"月"+today.getDate()+"日</br>"+T+W[today.getDay()];
+setTimeout("showtime()",1000);
+}
+window.onload=function(){
+	showtime();
+	};
+</script>
+</html>
